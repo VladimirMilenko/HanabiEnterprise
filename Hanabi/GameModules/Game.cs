@@ -29,14 +29,14 @@ namespace Hanabi.GameModules
 
         private IList<GameAction> _gameActions;
         private IOService _ioService;
-        private StepDeterminerService _stepDeterminerService;
+        private StepProcessor _stepProcessor;
 
 
         public Game(IOService ioService, IList<GameAction> gameActions)
         {
             _gameActions = gameActions;
             _ioService = ioService;
-            _stepDeterminerService = new StepDeterminerService(this, _gameActions);
+            _stepProcessor = new StepProcessor(this, _gameActions);
             Statistics = new GameStatistics();
         }
 
@@ -48,7 +48,7 @@ namespace Hanabi.GameModules
             while ((command = _ioService.ReadLine()) != null)
             {
 
-                var commandResult = _stepDeterminerService.ProcessCommand(command);
+                var commandResult = _stepProcessor.ProcessCommand(command);
                 if (_waitingForNewGameStart && _currentGameState == GameState.Finished) continue;
 
                 if (commandResult == GameState.Finished)
