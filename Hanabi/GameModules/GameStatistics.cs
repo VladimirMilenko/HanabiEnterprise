@@ -2,8 +2,10 @@
 {
     public class GameStatistics
     {
-        public int RiskySteps;
-        public int GeneralSteps;
+        public int Rounds { get; set; }
+        private int _riskySteps;
+        public int RiskySteps { get; set; }
 
+        public int CardsPlayed { get; set; }
     }
 }

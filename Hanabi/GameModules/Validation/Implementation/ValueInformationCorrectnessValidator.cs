@@ -1,7 +1,9 @@
 ﻿using System.Linq;
 using Hanabi.GameModules.GameActions;
+using Hanabi.GameModules.GameActions.Abstract;
+using Hanabi.GameModules.Validation.Interfaces;
 
-namespace Hanabi.GameModules.Validation
+namespace Hanabi.GameModules.Validation.Implementation
 {
     public class ValueInformationCorrectnessValidator : IGameValidator
     {

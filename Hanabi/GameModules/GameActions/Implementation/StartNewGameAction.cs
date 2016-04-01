@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Hanabi.GameModules.GameActions.Abstract;
 using Hanabi.GameModules.Validation;
+using Hanabi.GameModules.Validation.Implementation;
+using Hanabi.GameModules.Validation.Interfaces;
 
 namespace Hanabi.GameModules.GameActions
 {
@@ -9,13 +12,14 @@ namespace Hanabi.GameModules.GameActions
     {
         public override CommandParams CommandParameters { get; set; }
         public override string NativeCommandStart => "Start new game with deck";
+        public override bool RequireGameCheck => false;
         public override string NativeCommandParams { get; set; }
 
         public override List<IGameValidator> CommandValidators => new List<IGameValidator> { new StartGameValidator() };
 
         public override void SetParametersFromInitString(string initString)
         {
-            NativeCommandParams = initString.Skip(NativeCommandStart.Length + 1).ToString();
+            NativeCommandParams = initString.Substring(NativeCommandStart.Length + 1);
             CommandParameters = new CommandParams { Cards = new List<Card>() };
             CommandParameters.Cards.AddRange(NativeCommandParams.Split(' ').Select(Card.FromString));
         }
@@ -38,7 +42,12 @@ namespace Hanabi.GameModules.GameActions
                 );
             game.StartNewGame(firstPlayer, secondPlayer, deck);
 
-            return GameSettings.CommandResult.Ok;
+            return GameSettings.CommandResult.Success;
+        }
+
+        public override void FinalizeCommand(Game game, CommandParams commandParams, GameSettings.CommandResult commandResult, bool constraintViolation)
+        {
+            
         }
     }
 }

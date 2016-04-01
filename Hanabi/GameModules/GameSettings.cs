@@ -18,8 +18,9 @@
 
         public enum CommandResult
         {
-            Ok,
-            Error,
+            Success,
+            Failed,
+            ConstraintViolation,
             Risky
         }
     }

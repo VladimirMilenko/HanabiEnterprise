@@ -42,7 +42,7 @@ namespace Hanabi.GameModules
             PossibleColors = Enum.GetValues(typeof(GameSettings.GameColors)).OfType<GameSettings.GameColors>().ToList();
 
             PossibleValues = new List<int>();
-            for (var i = GameSettings.CardMinValue; i < GameSettings.CardMaxValue; i++)
+            for (var i = GameSettings.CardMinValue; i <= GameSettings.CardMaxValue; i++)
             {
                 PossibleValues.Add(i);
             }

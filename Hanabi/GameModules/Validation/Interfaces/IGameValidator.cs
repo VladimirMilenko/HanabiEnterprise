@@ -1,6 +1,7 @@
 ﻿using Hanabi.GameModules.GameActions;
+using Hanabi.GameModules.GameActions.Abstract;
 
-namespace Hanabi.GameModules.Validation
+namespace Hanabi.GameModules.Validation.Interfaces
 {
     public interface IGameValidator
     {
